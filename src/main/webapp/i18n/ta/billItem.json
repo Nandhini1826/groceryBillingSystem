@@ -1,0 +1,26 @@
+
+{
+    "groceryBillingSystemApp": {
+        "billItem" : {
+            "home": {
+                "title": "Bill Items",
+                "createLabel": "Bill Item-ஐ உருவாக்கு",
+                "createOrEditLabel": "Bill Item -ஐ மாற்று (அ) உருவாக்கு"
+            },
+            "created": "Bill Item புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+            "updated": "Bill Item மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+            "deleted": "A Bill Item நீக்கப்பட்டது, அடையாளம {{ param }}",
+            "delete": {
+                "question": "நீக்குவதற்கு உறுதி செய் Bill Item {{ id }}?"
+            },
+            "detail": {
+                "title": "Bill Item"
+            },
+            "amount": "Amount",
+            "quantityPurchased": "Quantity Purchased",
+            "pricePerUnit": "Price Per Unit",
+            "item": "Item",
+            "bill": "Bill"
+        }
+    }
+}

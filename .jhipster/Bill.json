@@ -1,0 +1,27 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "billItem",
+            "otherEntityName": "billItem",
+            "otherEntityRelationshipName": "bill"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dateTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "Float"
+        }
+    ],
+    "changelogDate": "20180315050053",
+    "entityTableName": "bill",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

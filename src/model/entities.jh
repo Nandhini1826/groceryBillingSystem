@@ -1,0 +1,22 @@
+entity Item{
+name String,
+price Float,
+quantity Float
+}
+relationship ManyToOne {
+BillItem{item(name)} to Item{billItem}
+}
+
+entity BillItem{
+amount Float,
+quantityPurchased Float,
+pricePerUnit Float
+} 
+relationship OneToMany {
+Bill{billItem} to BillItem{bill}
+}
+
+entity Bill{
+dateTime ZonedDateTime,
+total Float
+}
