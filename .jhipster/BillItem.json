@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "item",
+            "otherEntityName": "item",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "bill",
+            "otherEntityName": "bill",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "amount",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "quantityPurchased",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "pricePerUnit",
+            "fieldType": "Float"
+        }
+    ],
+    "changelogDate": "20180315050052",
+    "entityTableName": "bill_item",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}
