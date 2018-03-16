@@ -10,6 +10,10 @@
                 "item": "Item",
                 "billItem": "Bill Item",
                 "bill": "Bill",
+                "ext-main": "Billing system",
+                "ext-item-list": "Item list",
+                "ext-bill-generator": "Bill Generator",
+                "ext-report": "Report",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -85,7 +89,7 @@
             "id": "ID"
         },
         "ribbon": {
-            "dev":"Development"
+            "dev": "Development"
         },
         "item-count": "Showing {{first}} - {{second}} of {{total}} items."
     },

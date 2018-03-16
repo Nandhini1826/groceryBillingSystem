@@ -18,6 +18,38 @@
                     </span>
                 </a>
             </li>
+
+            <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
+                    <span>
+                        <i class="fa fa-th-list" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.entities.ext-main">
+                            Billing system
+                        </span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu>
+                    <li>
+                        <a class="dropdown-item" routerLink="ext-report" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.ext-report">Report</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="ext-bill-generator" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.ext-bill-generator">Bill generation</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="ext-item-list" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.entities.ext-item-list">Product list</span>
+                        </a>
+                    </li>
+                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                </ul>
+            </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
@@ -124,13 +156,13 @@
             </li>
             <li ngbDropdown class="nav-item dropdown pointer" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
-                  <span *ngIf="!getImageUrl()">
+                    <span *ngIf="!getImageUrl()">
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <span jhiTranslate="global.menu.account.main">
                       Account
                     </span>
-                  </span>
-                  <span *ngIf="getImageUrl()">
+                    </span>
+                    <span *ngIf="getImageUrl()">
                       <img [src]="getImageUrl()" class="profile-image img-circle" alt="Avatar">
                   </span>
                 </a>
