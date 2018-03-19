@@ -1,7 +1,6 @@
-
 {
     "groceryBillingSystemApp": {
-        "item" : {
+        "item": {
             "home": {
                 "title": "Items",
                 "createLabel": "Item-ஐ உருவாக்கு",
@@ -16,9 +15,9 @@
             "detail": {
                 "title": "Item"
             },
-            "name": "Name",
-            "price": "Price",
-            "quantity": "Quantity",
+            "name": "பொருள்",
+            "price": "விலை",
+            "quantity": "அளவு",
             "billItem": "Bill Item"
         }
     }
