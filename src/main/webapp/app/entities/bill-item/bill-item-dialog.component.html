@@ -1,3 +1,5 @@
+<h2>Bill {{ billId }}</h2>
+
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
@@ -12,36 +14,43 @@
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="billItem.id" readonly />
         </div>
+
+        
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="groceryBillingSystemApp.billItem.amount" for="field_amount">Amount</label>
-            <input type="number" class="form-control" name="amount" id="field_amount"
-                [(ngModel)]="billItem.amount" />
-        </div>
+                <label class="form-control-label" jhiTranslate="groceryBillingSystemApp.billItem.item" for="field_item">Item</label>
+                <select class="form-control" id="field_item" name="item" [(ngModel)]="billItem.item" (ngModelChange)="onItemChange($event)">
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="itemOption.id === billItem.item?.id ? billItem.item : itemOption"
+                    *ngFor="let itemOption of items; trackBy: trackItemById"
+                    jhiTranslate="items.{{itemOption.name}}">{{itemOption.name}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="groceryBillingSystemApp.billItem.pricePerUnit" for="field_pricePerUnit">Price Per Unit</label>
+                    <input type="number" class="form-control" name="pricePerUnit" id="field_pricePerUnit"
+                        [(ngModel)]="billItem.pricePerUnit" />
+                </div>
+        
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="groceryBillingSystemApp.billItem.quantityPurchased" for="field_quantityPurchased">Quantity Purchased</label>
             <input type="number" class="form-control" name="quantityPurchased" id="field_quantityPurchased"
-                [(ngModel)]="billItem.quantityPurchased" />
+                [(ngModel)]="billItem.quantityPurchased" 
+                #quantity (keyup)="onKey(quantity.value)" />
         </div>
+        
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="groceryBillingSystemApp.billItem.pricePerUnit" for="field_pricePerUnit">Price Per Unit</label>
-            <input type="number" class="form-control" name="pricePerUnit" id="field_pricePerUnit"
-                [(ngModel)]="billItem.pricePerUnit" />
-        </div>
-
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="groceryBillingSystemApp.billItem.item" for="field_item">Item</label>
-            <select class="form-control" id="field_item" name="item" [(ngModel)]="billItem.item" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="itemOption.id === billItem.item?.id ? billItem.item : itemOption" *ngFor="let itemOption of items; trackBy: trackItemById">{{itemOption.name}}</option>
-            </select>
-        </div>
-        <div class="form-group">
+                <label class="form-control-label" jhiTranslate="groceryBillingSystemApp.billItem.amount" for="field_amount">Amount</label>
+                <input type="number" class="form-control" name="amount" id="field_amount"
+                    [(ngModel)]="billItem.amount" />
+            </div>
+        <!-- <div class="form-group">
             <label class="form-control-label" jhiTranslate="groceryBillingSystemApp.billItem.bill" for="field_bill">Bill</label>
             <select class="form-control" id="field_bill" name="bill" [(ngModel)]="billItem.bill" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="billOption.id === billItem.bill?.id ? billItem.bill : billOption" *ngFor="let billOption of bills; trackBy: trackBillById">{{billOption.id}}</option>
             </select>
-        </div>
+        </div> -->
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

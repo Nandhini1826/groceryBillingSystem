@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
+import { ExtBillService } from '../ext-bill/ext-bill.service';
 import { BillItem } from './bill-item.model';
 import { BillItemPopupService } from './bill-item-popup.service';
 import { BillItemService } from './bill-item.service';
@@ -18,12 +20,16 @@ import { Bill, BillService } from '../bill';
 })
 export class BillItemDialogComponent implements OnInit {
 
+    billId: number;
+
     billItem: BillItem;
     isSaving: boolean;
 
     items: Item[];
 
-    bills: Bill[];
+    // bills: Bill[];
+
+    private subscription: Subscription;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -31,16 +37,47 @@ export class BillItemDialogComponent implements OnInit {
         private billItemService: BillItemService,
         private itemService: ItemService,
         private billService: BillService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private route: ActivatedRoute,
+        private extBillService: ExtBillService
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.itemService.query()
-            .subscribe((res: HttpResponse<Item[]>) => { this.items = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
-        this.billService.query()
-            .subscribe((res: HttpResponse<Bill[]>) => { this.bills = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+
+        // this.subscription = this.route.params.subscribe((params) => {
+        //     this.billId = params['bill-id'];
+        //   });
+
+        this.billId = this.extBillService.getCurrentBillId();
+
+        this.loadItems();
+
+        // this.itemService.query()
+        //     .subscribe((res: HttpResponse<Item[]>) => { this.items = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        // this.billService.query()
+        //     .subscribe((res: HttpResponse<Bill[]>) => { this.bills = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+    }
+
+    loadItems() {
+        this.items = this.extBillService.fetchItems();
+    }
+
+    // if an item is selected in the drop down, populate the price per unit
+    onItemChange(item: Item) {
+        // console.log('trial ' + JSON.stringify(item));
+        this.billItem.pricePerUnit = (item === null) ? 0 : item.price;
+
+        this.billItem.quantityPurchased = 0;
+        this.billItem.amount = 0;
+    }
+
+    // if quantity is entered, calculate the amount
+    onKey(quantity: number) {
+        this.billItem.amount = this.billItem != null && this.billItem.item != null ?
+                Math.round((this.billItem.pricePerUnit / this.billItem.item['quantity']) * quantity) :
+                0;
     }
 
     clear() {
@@ -49,13 +86,16 @@ export class BillItemDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.billItem.id !== undefined) {
-            this.subscribeToSaveResponse(
-                this.billItemService.update(this.billItem));
-        } else {
-            this.subscribeToSaveResponse(
-                this.billItemService.create(this.billItem));
-        }
+        // if (this.billItem.id !== undefined) {
+        //     this.subscribeToSaveResponse(
+        //         this.billItemService.update(this.billItem));
+        // } else {
+        //     this.subscribeToSaveResponse(
+        //         this.billItemService.create(this.billItem));
+        // }
+
+        const result: BillItem = this.extBillService.storeBillItem(this.billId, this.billItem);
+        this.onSaveSuccess(result);
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<BillItem>>) {

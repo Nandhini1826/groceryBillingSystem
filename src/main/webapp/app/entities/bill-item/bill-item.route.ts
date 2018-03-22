@@ -11,7 +11,7 @@ export const billItemRoute: Routes = [
         path: 'bill-item',
         component: BillItemComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'groceryBillingSystemApp.billItem.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -19,7 +19,7 @@ export const billItemRoute: Routes = [
         path: 'bill-item/:id',
         component: BillItemDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'groceryBillingSystemApp.billItem.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -31,7 +31,7 @@ export const billItemPopupRoute: Routes = [
         path: 'bill-item-new',
         component: BillItemPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'groceryBillingSystemApp.billItem.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -41,7 +41,7 @@ export const billItemPopupRoute: Routes = [
         path: 'bill-item/:id/edit',
         component: BillItemPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'groceryBillingSystemApp.billItem.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -51,7 +51,7 @@ export const billItemPopupRoute: Routes = [
         path: 'bill-item/:id/delete',
         component: BillItemDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: [],
             pageTitle: 'groceryBillingSystemApp.billItem.home.title'
         },
         canActivate: [UserRouteAccessService],
