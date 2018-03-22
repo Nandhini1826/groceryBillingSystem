@@ -52,7 +52,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'ext-bill-generator',
+    path: 'ext-bill-generator/:id',
     component: ExtBillGeneratorComponent,
     resolve: {
         'pagingParams': ExtBillResolvePagingParams

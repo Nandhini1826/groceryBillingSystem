@@ -75,7 +75,7 @@ export class BillItemDialogComponent implements OnInit {
 
     // if quantity is entered, calculate the amount
     onKey(quantity: number) {
-        this.billItem.amount = this.billItem != null && this.billItem.item != null ?
+        this.billItem.amount = this.billItem != null && this.billItem.item != null && this.billItem.item['quantity'] !== 0 ?
                 Math.round((this.billItem.pricePerUnit / this.billItem.item['quantity']) * quantity) :
                 0;
     }

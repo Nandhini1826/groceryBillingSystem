@@ -91,6 +91,7 @@ export class ExtBillService {
     const bills = this.fetchSortedBills();
     for (let index = 0; index < bills.length; index++) {
       const bill = bills[index];
+      console.log('fetchBillFromLs ' + bill.id + ' ' + billId);
       if (bill.id === billId) {
         return bill;
       }
@@ -173,5 +174,9 @@ export class ExtBillService {
     return bills.sort((a, b) => {
       return b.id - a.id;
     });
+  }
+
+  eraseAllData() {
+    localStorage.clear();
   }
 }
