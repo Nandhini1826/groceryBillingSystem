@@ -22,13 +22,14 @@ export class ExtBillGeneratorComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private eventManager: JhiEventManager,
+    private jhiAlertService: JhiAlertService,
     private extBillService: ExtBillService
   ) { }
 
   ngOnInit() {
 
     this.subscription = this.route.params.subscribe((params) => {
-      this.billId = params['id'];
+      this.billId = +params['id'];
     });
 
     this.loadAll();
@@ -45,7 +46,13 @@ export class ExtBillGeneratorComponent implements OnInit, OnDestroy {
 
   loadBill() {
     this.bill = this.extBillService.fetchBill(this.billId);
-    console.log('loadBill ' + JSON.stringify(this.bill));
+    console.log('loadBill ' + this.billId + ' ' + JSON.stringify(this.bill));
+
+    if (this.bill === null) {
+      this.jhiAlertService.error('Unable to load bill for id ' + this.billId);
+      return;
+    }
+
     this.billItems = this.bill.billItems;
     this.billId = this.bill.id;
     this.extBillService.setCurrentBillId(this.bill.id);
