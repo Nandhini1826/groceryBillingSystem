@@ -5,7 +5,8 @@ export class FindLanguageFromKeyPipe implements PipeTransform {
     private languages: any = {
         'en': { name: 'English' },
         'hi': { name: 'हिंदी' },
-        'ta': { name: 'தமிழ்' }
+        'ta': { name: 'தமிழ்' },
+        'te': { name: 'తెలుగు'}
         // jhipster-needle-i18n-language-key-pipe - JHipster will add/remove languages in this object
     };
     transform(lang: string): string {
