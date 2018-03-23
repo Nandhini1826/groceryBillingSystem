@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+// import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { Item } from '../../item/item.model';
 // import { ItemService } from './item.service';
@@ -22,7 +22,7 @@ export class ExtItemListComponent implements OnInit, OnDestroy {
   constructor(
         // private itemService: ItemService,
         private extBillService: ExtBillService,
-        private jhiAlertService: JhiAlertService,
+        // private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private principal: Principal
   ) { }
@@ -51,8 +51,8 @@ export class ExtItemListComponent implements OnInit, OnDestroy {
     this.eventSubscriber = this.eventManager.subscribe('itemListModification', (response) => this.loadAll());
   }
 
-  private onError(error) {
-    this.jhiAlertService.error(error.message, null, null);
-  }
+  // private onError(error) {
+  //   this.jhiAlertService.error(error.message, null, null);
+  // }
 
 }

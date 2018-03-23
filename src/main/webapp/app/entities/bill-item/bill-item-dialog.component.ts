@@ -1,18 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+// import { Subscription } from 'rxjs/Subscription';
+// import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
-import { Observable } from 'rxjs/Observable';
+// import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { ExtBillService } from '../ext-bill/ext-bill.service';
 import { BillItem } from './bill-item.model';
 import { BillItemPopupService } from './bill-item-popup.service';
-import { BillItemService } from './bill-item.service';
-import { Item, ItemService } from '../item';
-import { Bill, BillService } from '../bill';
+// import { BillItemService } from './bill-item.service';
+import { Item } from '../item';
+import { Bill } from '../bill';
 
 @Component({
     selector: 'jhi-bill-item-dialog',
@@ -29,16 +29,16 @@ export class BillItemDialogComponent implements OnInit {
 
     // bills: Bill[];
 
-    private subscription: Subscription;
+    // private subscription: Subscription;
 
     constructor(
         public activeModal: NgbActiveModal,
-        private jhiAlertService: JhiAlertService,
-        private billItemService: BillItemService,
-        private itemService: ItemService,
-        private billService: BillService,
+        // private jhiAlertService: JhiAlertService,
+        // private billItemService: BillItemService,
+        // private itemService: ItemService,
+        // private billService: BillService,
         private eventManager: JhiEventManager,
-        private route: ActivatedRoute,
+        // private route: ActivatedRoute,
         private extBillService: ExtBillService
     ) {
     }
@@ -98,10 +98,10 @@ export class BillItemDialogComponent implements OnInit {
         this.onSaveSuccess(result);
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<BillItem>>) {
-        result.subscribe((res: HttpResponse<BillItem>) =>
-            this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
-    }
+    // private subscribeToSaveResponse(result: Observable<HttpResponse<BillItem>>) {
+    //     result.subscribe((res: HttpResponse<BillItem>) =>
+    //         this.onSaveSuccess(res.body), (res: HttpErrorResponse) => this.onSaveError());
+    // }
 
     private onSaveSuccess(result: BillItem) {
         this.eventManager.broadcast({ name: 'billItemListModification', content: 'OK'});
@@ -109,13 +109,13 @@ export class BillItemDialogComponent implements OnInit {
         this.activeModal.dismiss(result);
     }
 
-    private onSaveError() {
-        this.isSaving = false;
-    }
+    // private onSaveError() {
+    //     this.isSaving = false;
+    // }
 
-    private onError(error: any) {
-        this.jhiAlertService.error(error.message, null, null);
-    }
+    // private onError(error: any) {
+    //     this.jhiAlertService.error(error.message, null, null);
+    // }
 
     trackItemById(index: number, item: Item) {
         return item.id;
