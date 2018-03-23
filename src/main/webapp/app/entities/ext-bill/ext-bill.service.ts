@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { isUndefined } from 'util';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiAlertService } from 'ng-jhipster';
 
 import { Item } from '../item/item.model';
 import { Bill } from '../bill/bill.model';
